@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Doubt Section | GCI Mehsana</title>
+  <meta name="description" content="Gyanmanjari Career Institute - Student Doubt Section" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-deep: #07090f;
+      --bg-card: rgba(18, 22, 35, 0.72);
+      --bg-input: rgba(12, 16, 28, 0.85);
+      --border: rgba(120, 160, 255, 0.12);
+      --border-focus: rgba(56, 189, 248, 0.65);
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --blue: #38bdf8;
+      --cyan: #22d3ee;
+      --orange: #fb923c;
+      --purple: #a78bfa;
+      --success: #34d399;
+      --error: #f87171;
+      --radius: 16px;
+      --radius-sm: 12px;
+      --glow-blue: 0 0 24px rgba(56, 189, 248, 0.25);
+      --glow-orange: 0 0 24px rgba(251, 146, 60, 0.2);
+      --font: 'Inter', system-ui, sans-serif;
+      --font-display: 'Outfit', 'Inter', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg-deep);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Ambient background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 20% -10%, rgba(56, 189, 248, 0.12), transparent 50%),
+        radial-gradient(ellipse 60% 40% at 90% 10%, rgba(251, 146, 60, 0.08), transparent 45%),
+        radial-gradient(ellipse 50% 30% at 50% 100%, rgba(167, 139, 250, 0.06), transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 24px 16px 80px;
+    }
+
+    /* ========== HEADER ========== */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 22px;
+      margin-bottom: 28px;
+      background: var(--bg-card);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    .logo-placeholder {
+      position: relative;
+      overflow: hidden;
+      min-width: 56px;
+      height: 56px;
+      flex-shrink: 0;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #0ea5e9, #6366f1 50%, #f97316);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 11px;
+      color: white;
+      letter-spacing: -0.01em;
+      box-shadow: var(--glow-blue);
+      padding: 4px 10px;
+      text-align: center;
+      line-height: 1.2;
+      white-space: nowrap;
+      animation: logo-pulse 3.4s ease-in-out infinite;
+    }
+
+    .logo-placeholder::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -60%;
+      width: 35%;
+      height: 100%;
+      background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+      transform: skewX(-20deg);
+      animation: logo-shine 3.8s ease-in-out infinite;
+    }
+
+    @keyframes logo-pulse {
+      0%, 100% { box-shadow: var(--glow-blue); }
+      50% { box-shadow: 0 0 30px rgba(56, 189, 248, 0.4), 0 0 14px rgba(251, 146, 60, 0.25); }
+    }
+
+    @keyframes logo-shine {
+      0% { left: -60%; }
+      45%, 100% { left: 130%; }
+    }
+
+    .header-text { flex: 1; min-width: 0; }
+
+    .header-text h1 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(90deg, #e0f2fe, #bae6fd, #fdba74, #bae6fd, #e0f2fe);
+      background-size: 220% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.25;
+      animation: title-shimmer 4.5s ease-in-out infinite;
+    }
+
+    @keyframes title-shimmer {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .header-text .sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+      font-weight: 500;
+    }
+
+    .header-text .tag {
+      display: inline-block;
+      margin-top: 6px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      background: rgba(34, 211, 238, 0.1);
+      border: 1px solid rgba(34, 211, 238, 0.25);
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    .motto {
+      text-align: center;
+      margin-bottom: 28px;
+      padding: 12px 16px;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.06), transparent);
+      border-radius: 12px;
+    }
+
+    .motto-word {
+      display: inline-block;
+      background: linear-gradient(90deg, var(--cyan), var(--blue), var(--orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: word-jumble 2.6s ease-in-out infinite;
+    }
+
+    .motto-word:nth-child(1) { animation-delay: 0s; }
+    .motto-word:nth-child(2) { animation-delay: 0.18s; }
+    .motto-word:nth-child(3) { animation-delay: 0.36s; }
+    .motto-word:nth-child(4) { animation-delay: 0.54s; }
+
+    @keyframes word-jumble {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-5px) rotate(-4deg); }
+      50% { transform: translateY(1px) rotate(0deg); }
+      75% { transform: translateY(4px) rotate(4deg); }
+    }
+
+    /* ========== PAGE TITLE ========== */
+    .page-title {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .page-title h2 {
+      font-family: var(--font-display);
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .page-title-word {
+      display: inline-block;
+      background: linear-gradient(105deg, #f0f9ff 0%, #7dd3fc 40%, #fdba74 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: word-float 3s ease-in-out infinite;
+    }
+
+    .page-title-word:nth-child(1) { animation-delay: 0s; }
+    .page-title-word:nth-child(2) { animation-delay: 0.2s; }
+    .page-title-word:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes word-float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .page-title p {
+      margin-top: 6px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* ========== FORM ========== */
+    form { display: flex; flex-direction: column; gap: 24px; }
+
+    .section-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 20px 20px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .section-card:hover {
+      border-color: rgba(56, 189, 248, 0.22);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), var(--glow-blue);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(120, 160, 255, 0.1);
+    }
+
+    .section-num {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--cyan);
+      background: rgba(34, 211, 238, 0.1);
+      border: 1px solid rgba(34, 211, 238, 0.25);
+      padding: 4px 10px;
+      border-radius: 8px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-icon {
+      font-size: 1.15rem;
+      opacity: 0.9;
+    }
+
+    /* Form fields */
+    .fields {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    @media (min-width: 540px) {
+      .fields.two-col {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .field {
+      position: relative;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 7px;
+      letter-spacing: 0.01em;
+    }
+
+    .field label .req {
+      color: var(--orange);
+      margin-left: 2px;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      padding: 13px 16px;
+      font-family: var(--font);
+      font-size: 0.95rem;
+      color: var(--text);
+      background: var(--bg-input);
+      border: 1px solid rgba(120, 160, 255, 0.15);
+      border-radius: var(--radius-sm);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .field input::placeholder {
+      color: var(--text-dim);
+      opacity: 0.85;
+    }
+
+    .field input:hover,
+    .field select:hover {
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .field input:focus,
+    .field select:focus {
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15), var(--glow-blue);
+      background: rgba(15, 20, 35, 0.95);
+    }
+
+    .field input.error,
+    .field select.error {
+      border-color: var(--error);
+      box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.15);
+    }
+
+    .field select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10l-5 5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    .field select option {
+      background: #0f172a;
+      color: var(--text);
+    }
+
+    .error-msg {
+      display: none;
+      font-size: 0.78rem;
+      color: var(--error);
+      margin-top: 6px;
+      font-weight: 500;
+    }
+
+    .error-msg.show { display: block; }
+
+    /* ========== SUBMIT ========== */
+    .submit-area {
+      margin-top: 8px;
+      text-align: center;
+    }
+
+    .submit-btn {
+      width: 100%;
+      max-width: 420px;
+      padding: 16px 28px;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: #fff;
+      background: linear-gradient(105deg, #0ea5e9 0%, #6366f1 45%, #f97316 100%);
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 24px rgba(14, 165, 233, 0.35), 0 0 40px rgba(249, 115, 22, 0.15);
+      transition: transform 0.2s ease, box-shadow 0.25s ease, filter 0.2s ease;
+      position: relative;
+      overflow: hidden;
+      animation: btn-glow-pulse 2.8s ease-in-out infinite;
+    }
+
+    .submit-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -75%;
+      width: 45%;
+      height: 100%;
+      background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+      transform: skewX(-20deg);
+      animation: btn-shine 3.2s ease-in-out infinite;
+    }
+
+    @keyframes btn-glow-pulse {
+      0%, 100% { box-shadow: 0 4px 24px rgba(14, 165, 233, 0.35), 0 0 40px rgba(249, 115, 22, 0.15); }
+      50% { box-shadow: 0 4px 28px rgba(14, 165, 233, 0.5), 0 0 52px rgba(249, 115, 22, 0.3); }
+    }
+
+    @keyframes btn-shine {
+      0% { left: -75%; }
+      45%, 100% { left: 130%; }
+    }
+
+    .submit-btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.15) 50%, transparent 70%);
+      transform: translateX(-100%);
+      transition: transform 0.5s ease;
+    }
+
+    .submit-btn:hover {
+      transform: scale(1.025);
+      box-shadow: 0 6px 32px rgba(14, 165, 233, 0.45), 0 0 48px rgba(249, 115, 22, 0.25);
+      filter: brightness(1.05);
+    }
+
+    .submit-btn:hover::after { transform: translateX(100%); }
+
+    .submit-btn:active { transform: scale(0.98); }
+
+    .submit-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      filter: none;
+      animation: none;
+    }
+
+    .submit-btn:disabled::before {
+      animation: none;
+      display: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .logo-placeholder,
+      .logo-placeholder::after,
+      .header-text h1,
+      .submit-btn,
+      .submit-btn::before,
+      .motto-word,
+      .page-title-word {
+        animation: none;
+      }
+    }
+
+    .form-note {
+      margin-top: 14px;
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+
+    /* ========== SUCCESS MODAL ========== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 6, 12, 0.82);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      padding: 20px;
+    }
+
+    .modal-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background: linear-gradient(165deg, rgba(22, 28, 45, 0.95), rgba(12, 16, 28, 0.98));
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 24px;
+      padding: 40px 28px 32px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5), var(--glow-blue);
+      transform: scale(0.92) translateY(12px);
+      transition: transform 0.35s cubic-bezier(0.34, 1.4, 0.64, 1);
+    }
+
+    .modal-overlay.show .modal {
+      transform: scale(1) translateY(0);
+    }
+
+    .check-circle {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 22px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.2), rgba(34, 211, 238, 0.15));
+      border: 2px solid rgba(52, 211, 153, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 32px rgba(52, 211, 153, 0.3);
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 24px rgba(52, 211, 153, 0.25); }
+      50% { box-shadow: 0 0 40px rgba(52, 211, 153, 0.45); }
+    }
+
+    .check-circle svg {
+      width: 36px;
+      height: 36px;
+      stroke: var(--success);
+      stroke-width: 2.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .check-circle .check-path {
+      stroke-dasharray: 48;
+      stroke-dashoffset: 48;
+      animation: draw-check 0.6s 0.2s ease forwards;
+    }
+
+    @keyframes draw-check {
+      to { stroke-dashoffset: 0; }
+    }
+
+    .modal h3 {
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #f0f9ff, #7dd3fc, #fdba74);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .modal .message {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
+    .modal .quote {
+      font-size: 0.88rem;
+      color: var(--text-dim);
+      font-style: italic;
+      margin: 16px 0 8px;
+    }
+
+    .modal .brand {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--cyan);
+      margin-top: 18px;
+    }
+
+    .modal-close {
+      margin-top: 24px;
+      padding: 12px 28px;
+      font-family: var(--font);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    }
+
+    .modal-close:hover {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: rgba(56, 189, 248, 0.55);
+      transform: scale(1.03);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(120, 160, 255, 0.08);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    .footer strong {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Utility */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      border: 0;
+    }
+  </style>
+  <style>
+    /* Extra for upload - matching existing design language */
+    .upload-area {
+      border: 2px dashed rgba(120, 160, 255, 0.2);
+      border-radius: var(--radius-sm);
+      padding: 28px 16px;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+      background: var(--bg-input);
+      position: relative;
+    }
+    .upload-area:hover, .upload-area.dragover {
+      border-color: rgba(56, 189, 248, 0.5);
+      background: rgba(56, 189, 248, 0.05);
+      box-shadow: var(--glow-blue);
+    }
+    .upload-area.has-file {
+      border-color: rgba(52, 211, 153, 0.4);
+      background: rgba(52, 211, 153, 0.05);
+    }
+    .upload-area input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+    .upload-icon { font-size: 2rem; margin-bottom: 8px; }
+    .upload-text { font-size: 0.9rem; font-weight: 600; color: var(--text-muted); }
+    .upload-hint { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+    .preview-box { display: none; margin-top: 14px; text-align: center; }
+    .preview-box.show { display: block; }
+    .preview-box img {
+      max-width: 100%;
+      max-height: 220px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+    }
+    .file-name {
+      font-size: 0.8rem;
+      color: var(--success);
+      margin-top: 8px;
+      font-weight: 500;
+    }
+    .back-row {
+      margin-bottom: 16px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--cyan); }
+    .success-panel {
+      display: none;
+      text-align: center;
+      padding: 40px 24px;
+      background: var(--bg-card);
+      backdrop-filter: blur(18px);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      border-radius: var(--radius);
+      box-shadow: 0 0 32px rgba(52, 211, 153, 0.15);
+    }
+    .success-panel.show { display: block; animation: fadeIn 0.4s ease; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .success-icon {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.2), rgba(34, 211, 238, 0.15));
+      border: 2px solid rgba(52, 211, 153, 0.5);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; margin: 0 auto 16px;
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+    .success-panel h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--success);
+      margin-bottom: 8px;
+    }
+    .success-panel p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header class="header">
+      <div class="logo-placeholder" aria-hidden="true">GCI Mehsana</div>
+      <div class="header-text">
+        <h1>Gyanmanjari Career Institute</h1>
+        <div class="sub">GCI Mehsana</div>
+        <span class="tag">DOUBT SECTION</span>
+      </div>
+    </header>
+
+    <div class="motto">
+      <span class="motto-word">दिव्यम्</span> <span class="motto-word">ददामि</span> <span class="motto-word">ते</span> <span class="motto-word">चक्षुः</span>
+    </div>
+
+    <div class="page-title">
+      <h2><span class="page-title-word">Doubt</span> <span class="page-title-word">Section</span></h2>
+      <p>Subject મુજબ Doubt પૂછો & Photo Upload કરો</p>
+    </div>
+
+    <div class="back-row">
+      <a href="https://www.gcimehsana.in" class="back-link">← Daily Work Report પર પાછા જાઓ</a>
+    </div>
+
+    <form id="doubtForm" novalidate>
+      <section class="section-card" aria-labelledby="sec1-title">
+        <div class="section-header">
+          <span class="section-num">01</span>
+          <h3 class="section-title" id="sec1-title">
+            <span class="section-icon">👤</span> Student Details
+          </h3>
+        </div>
+        <div class="fields two-col">
+          <div class="field">
+            <label for="studentName">Student Name <span class="req">*</span></label>
+            <input type="text" id="studentName" name="studentName" placeholder="Enter full name" required autocomplete="name" />
+            <div class="error-msg" id="err-studentName">Please enter student name</div>
+          </div>
+          <div class="field">
+            <label for="rollNo">Roll No <span class="req">*</span></label>
+            <input type="text" id="rollNo" name="rollNo" placeholder="e.g. 1024" required />
+            <div class="error-msg" id="err-rollNo">Please enter roll number</div>
+          </div>
+          <div class="field" style="grid-column: 1 / -1;">
+            <label for="subject">Subject <span class="req">*</span></label>
+            <select id="subject" name="subject" required>
+              <option value="">Select Subject</option>
+              <option value="Physics">Physics</option>
+              <option value="Chemistry">Chemistry</option>
+              <option value="Maths">Maths</option>
+              <option value="Biology">Biology</option>
+            </select>
+            <div class="error-msg" id="err-subject">Please select subject</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-card" aria-labelledby="sec2-title">
+        <div class="section-header">
+          <span class="section-num">02</span>
+          <h3 class="section-title" id="sec2-title">
+            <span class="section-icon">📷</span> Doubt Photo Upload
+          </h3>
+        </div>
+        <div class="fields">
+          <div class="field">
+            <div class="upload-area" id="uploadArea">
+              <input type="file" id="doubtPhoto" name="doubtPhoto" accept="image/*" required />
+              <div class="upload-icon">📷</div>
+              <div class="upload-text">Photo અહીં Click કરો અથવા Drag કરો</div>
+              <div class="upload-hint">JPG, PNG · Max 5MB</div>
+            </div>
+            <div class="preview-box" id="previewBox">
+              <img id="previewImg" alt="Preview" />
+              <div class="file-name" id="fileName"></div>
+            </div>
+            <div class="error-msg" id="err-photo">Please upload doubt photo</div>
+          </div>
+        </div>
+      </section>
+
+      <div class="submit-area">
+        <button type="submit" class="submit-btn" id="submitBtn">Doubt Submit કરો</button>
+      </div>
+    </form>
+
+    <div class="success-panel" id="successPanel">
+      <div class="success-icon">✓</div>
+      <h3>Doubt Successfully Submitted!</h3>
+      <p>તમારો Doubt Teacher ને મોકલાઈ ગયો છે.<br>Solution આવ્યા પછી અહીંથી જોઈ શકશો.</p>
+      <a href="https://www.gcimehsana.in" class="back-link" style="margin-top:12px;display:inline-flex;">← Daily Work Report પર જાઓ</a>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // ================= SUPABASE CONFIG =================
+    // Project URL from your GCI Mehsana Supabase project.
+    const SUPABASE_URL = 'https://qaueczwungesulwujmch.supabase.co';
+
+    // IMPORTANT: Paste ONLY your Supabase PUBLISHABLE key here.
+    // Never put the sb_secret_... key in this HTML file.
+    const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_1R9DPCZZH3yjw2L6R5geuQ_OzF4EoZe';
+
+    const supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
+    // ===================================================
+
+    const uploadArea = document.getElementById('uploadArea');
+    const fileInput = document.getElementById('doubtPhoto');
+    const previewBox = document.getElementById('previewBox');
+    const previewImg = document.getElementById('previewImg');
+    const fileName = document.getElementById('fileName');
+    const form = document.getElementById('doubtForm');
+    const successPanel = document.getElementById('successPanel');
+    const submitBtn = document.getElementById('submitBtn');
+
+    ['dragenter','dragover'].forEach(evt => {
+      uploadArea.addEventListener(evt, e => { e.preventDefault(); uploadArea.classList.add('dragover'); });
+    });
+    ['dragleave','drop'].forEach(evt => {
+      uploadArea.addEventListener(evt, e => { e.preventDefault(); uploadArea.classList.remove('dragover'); });
+    });
+    uploadArea.addEventListener('drop', e => {
+      const files = e.dataTransfer.files;
+      if (files.length) { fileInput.files = files; showPreview(files[0]); }
+    });
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files.length) showPreview(fileInput.files[0]);
+    });
+
+    function showPreview(file) {
+      if (!file.type.startsWith('image/')) { alert('ફક્ત Image file જ અપલોડ કરો (JPG/PNG)'); return; }
+      if (file.size > 5 * 1024 * 1024) { alert('File size 5MB થી ઓછી હોવી જોઈએ'); return; }
+      const reader = new FileReader();
+      reader.onload = e => {
+        previewImg.src = e.target.result;
+        fileName.textContent = '✓ ' + file.name;
+        previewBox.classList.add('show');
+        uploadArea.classList.add('has-file');
+        document.getElementById('err-photo').classList.remove('show');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+
+      let ok = true;
+      const name = document.getElementById('studentName').value.trim();
+      const roll = document.getElementById('rollNo').value.trim();
+      const subject = document.getElementById('subject').value;
+      const photo = fileInput.files[0];
+
+      document.querySelectorAll('.error-msg').forEach(el => el.classList.remove('show'));
+      document.querySelectorAll('.field input, .field select').forEach(el => el.classList.remove('error'));
+
+      if (!name) {
+        document.getElementById('err-studentName').classList.add('show');
+        document.getElementById('studentName').classList.add('error');
+        ok = false;
+      }
+      if (!roll) {
+        document.getElementById('err-rollNo').classList.add('show');
+        document.getElementById('rollNo').classList.add('error');
+        ok = false;
+      }
+      if (!subject) {
+        document.getElementById('err-subject').classList.add('show');
+        document.getElementById('subject').classList.add('error');
+        ok = false;
+      }
+      if (!photo) {
+        document.getElementById('err-photo').classList.add('show');
+        ok = false;
+      }
+
+      if (!ok) return;
+
+      if (SUPABASE_PUBLISHABLE_KEY === 'PASTE_YOUR_PUBLISHABLE_KEY_HERE') {
+        alert('Supabase Publishable Key હજુ HTMLમાં નાખવાની બાકી છે.');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Uploading...';
+
+      try {
+        // Unique file name prevents students from overwriting each other's images.
+        const safeName = photo.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+        const filePath = `doubts/${Date.now()}_${crypto.randomUUID()}_${safeName}`;
+
+        // 1) Upload doubt photo to Supabase Storage bucket: gci-doubts
+        const { error: uploadError } = await supabaseClient.storage
+          .from('gci-doubts')
+          .upload(filePath, photo, {
+            cacheControl: '3600',
+            upsert: false,
+            contentType: photo.type
+          });
+
+        if (uploadError) throw uploadError;
+
+        // 2) Get public URL (bucket should be configured as Public)
+        const { data: publicUrlData } = supabaseClient.storage
+          .from('gci-doubts')
+          .getPublicUrl(filePath);
+
+        const doubtPhotoUrl = publicUrlData.publicUrl;
+
+        submitBtn.textContent = 'Saving...';
+
+        // 3) Save student doubt record in table: gci-mehsana
+        const { error: insertError } = await supabaseClient
+          .from('gci-mehsana')
+          .insert([{
+            student_name: name,
+            roll_number: roll,
+            subject: subject,
+            doubt_photo: doubtPhotoUrl,
+            solution_photo: null,
+            status: 'Pending'
+          }]);
+
+        if (insertError) throw insertError;
+
+        // Success
+        form.style.display = 'none';
+        document.querySelector('.back-row').style.display = 'none';
+        successPanel.classList.add('show');
+
+      } catch (error) {
+        console.error('Supabase error:', error);
+        alert(
+          'Doubt submit થઈ શક્યો નથી.\n\n' +
+          'Supabase table/storage policies અથવા Publishable Key check કરો.\n\n' +
+          'Error: ' + (error.message || error)
+        );
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Doubt Submit કરો';
+      }
+    });
+  </script>
+</body>
+</html>
