@@ -325,6 +325,25 @@ input[type=file]{
   border-radius:8px;
 }
 
+.solution-description{
+  margin-top:12px;
+  padding:12px 14px;
+  background:rgba(34,211,238,.06);
+  border:1px solid rgba(34,211,238,.15);
+  border-radius:10px;
+  color:var(--text);
+  font-size:.84rem;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+.solution-description-title{
+  color:var(--cyan);
+  font-weight:700;
+  margin-bottom:5px;
+  font-size:.78rem;
+}
+
 .live{
   margin-top:14px;
   padding:10px;
@@ -486,6 +505,11 @@ input[type=file]{
         class="not-uploaded"
       >
         Teacher has not uploaded solution yet.
+      </div>
+
+      <div id="solutionDescription" class="solution-description hidden">
+        <div class="solution-description-title">📝 Teacher Description</div>
+        <div id="solutionDescriptionText"></div>
       </div>
 
     </div>
@@ -802,6 +826,10 @@ function showMyDoubt(doubt){
 
   }
 
+  showSolutionDescription(
+    doubt.solution_details
+  );
+
 }
 
 
@@ -845,6 +873,25 @@ function showSolution(url){
 
   $('solutionEmpty')
   .classList.add('hidden');
+
+}
+
+function showSolutionDescription(description){
+
+  const box = $('solutionDescription');
+  const text = $('solutionDescriptionText');
+
+  if(description && String(description).trim()){
+
+    text.textContent = String(description).trim();
+    box.classList.remove('hidden');
+
+  }else{
+
+    text.textContent = '';
+    box.classList.add('hidden');
+
+  }
 
 }
 
@@ -903,6 +950,10 @@ function subscribeRealtime(){
 
       }
 
+      showSolutionDescription(
+        updated.solution_details
+      );
+
     }
 
   )
@@ -937,7 +988,7 @@ async function loadLastDoubt(){
   await supabaseClient
   .from('gci-mehsana')
   .select(
-    'id,student_name,roll_number,subject,details,doubt_photo,solution_photo,status'
+    'id,student_name,roll_number,subject,details,doubt_photo,solution_photo,solution_details,status'
   )
   .eq(
     'student_name',
