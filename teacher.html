@@ -53,6 +53,10 @@ input:focus{border-color:rgba(56,189,248,.6);box-shadow:0 0 0 3px rgba(56,189,24
 .photo{background:rgba(7,9,15,.7);border:1px solid var(--border);border-radius:12px;padding:10px}.photo h4{font-size:.75rem;color:var(--muted);margin-bottom:8px}
 .photo img{display:block;width:100%;height:260px;object-fit:contain;background:#02040a;border-radius:8px}
 .upload{margin-top:12px;display:grid;gap:9px}.upload input{padding:9px}
+textarea{width:100%;min-height:100px;padding:13px 15px;background:var(--input);color:var(--text);border:1px solid var(--border);border-radius:11px;outline:none;resize:vertical;font-family:inherit}
+textarea:focus{border-color:rgba(56,189,248,.6);box-shadow:0 0 0 3px rgba(56,189,248,.12)}
+.solution-desc{margin-top:10px;padding:12px 13px;background:rgba(56,189,248,.06);border:1px solid rgba(56,189,248,.12);border-radius:10px;color:#cbd5e1;font-size:.84rem;white-space:pre-wrap}
+.solution-desc strong{display:block;color:var(--cyan);font-size:.75rem;margin-bottom:5px}
 .solve{background:linear-gradient(105deg,#0ea5e9,#6366f1,#f97316)}
 .empty{text-align:center;padding:35px;color:var(--muted);border:1px dashed var(--border);border-radius:14px}
 .error{color:var(--red);font-size:.82rem;margin-top:10px}
@@ -127,7 +131,7 @@ async function login(){
 async function loadDoubts(){
  $('doubtList').innerHTML='<div class="empty">Loading doubts...</div>';
  const {data,error}=await supabaseClient.from('gci-mehsana')
- .select('id,student_name,roll_number,subject,doubt_photo,solution_photo,status')
+ .select('id,student_name,roll_number,subject,doubt_photo,solution_photo,solution_description,status')
  .order('id',{ascending:false});
  if(error){
   $('doubtList').innerHTML='<div class="empty">Doubts load થઈ શક્યા નથી.<div class="error">'+esc(error.message)+'</div><br>Teacher માટે SELECT policy જરૂરી છે.</div>';
@@ -150,31 +154,54 @@ function renderDoubt(d){
  <span class="badge ${isSolved?'solved':'pending'}">${isSolved?'Solved':'Pending'}</span></div>
  <div class="photos">
  <div class="photo"><h4>📷 Student Doubt</h4>${d.doubt_photo?`<img src="${escAttr(d.doubt_photo)}">`:'<div class="empty">No photo</div>'}</div>
- <div class="photo"><h4>✅ Teacher Solution</h4>${d.solution_photo?`<img src="${escAttr(d.solution_photo)}">`:'<div class="empty">Not uploaded</div>'}</div>
+ <div class="photo"><h4>✅ Teacher Solution</h4>
+ ${d.solution_photo?`<img src="${escAttr(d.solution_photo)}">`:'<div class="empty">Not uploaded</div>'}
+ ${d.solution_description?`<div class="solution-desc"><strong>📝 Teacher Explanation</strong>${esc(d.solution_description)}</div>`:''}
  </div>
- ${isSolved?'':`<div class="upload"><input type="file" id="solution-${d.id}" accept="image/*"><button class="btn solve" onclick="uploadSolution(${Number(d.id)})">Upload Solution & Mark Solved</button></div>`}
+ </div>
+ ${isSolved?'':`<div class="upload">
+ <textarea id="description-${d.id}" placeholder="Teacher Explanation / Solution Description (optional)"></textarea>
+ <input type="file" id="solution-${d.id}" accept="image/*">
+ <button class="btn solve" onclick="uploadSolution(${Number(d.id)})">Upload Solution & Mark Solved</button>
+ </div>`}
  </article>`;
 }
 
 async function uploadSolution(id){
- const input=$('solution-'+id),file=input?.files?.[0],btn=input?.nextElementSibling;
- if(!file)return alert('પહેલા solution photo પસંદ કરો.');
- if(!file.type.startsWith('image/'))return alert('ફક્ત image file upload કરો.');
- if(file.size>5*1024*1024)return alert('Solution photo 5MB થી ઓછી હોવી જોઈએ.');
- btn.disabled=true;btn.textContent='Uploading...';
+ const input=$('solution-'+id), file=input?.files?.[0];
+ const desc=$('description-'+id)?.value.trim() || '';
+ const btn=input?.nextElementSibling;
+ if(!file && !desc)return alert('Solution photo અથવા Descriptionમાંથી ઓછામાં ઓછું એક આપો.');
+ if(file){
+  if(!file.type.startsWith('image/'))return alert('ફક્ત image file upload કરો.');
+  if(file.size>5*1024*1024)return alert('Solution photo 5MB થી ઓછી હોવી જોઈએ.');
+ }
+ if(btn){btn.disabled=true;btn.textContent='Saving...';}
  try{
-  const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
-  const path=`solutions/${Date.now()}_${crypto.randomUUID()}_${safe}`;
-  const {error:upErr}=await supabaseClient.storage.from('gci-doubts').upload(path,file,{cacheControl:'3600',upsert:false,contentType:file.type});
-  if(upErr)throw upErr;
-  const {data:urlData}=supabaseClient.storage.from('gci-doubts').getPublicUrl(path);
-  const {error:dbErr}=await supabaseClient.from('gci-mehsana').update({solution_photo:urlData.publicUrl,status:'Solved'}).eq('id',id);
+  let solutionUrl=null;
+  if(file){
+   const safe=file.name.replace(/[^a-zA-Z0-9._-]/g,'_');
+   const path=`solutions/${Date.now()}_${crypto.randomUUID()}_${safe}`;
+   const {error:upErr}=await supabaseClient.storage.from('gci-doubts').upload(
+     path,file,{cacheControl:'3600',upsert:false,contentType:file.type}
+   );
+   if(upErr)throw upErr;
+   const {data:urlData}=supabaseClient.storage.from('gci-doubts').getPublicUrl(path);
+   solutionUrl=urlData.publicUrl;
+  }
+
+  const updateData={status:'Solved',solution_description:desc || null};
+  if(solutionUrl) updateData.solution_photo=solutionUrl;
+
+  const {error:dbErr}=await supabaseClient.from('gci-mehsana')
+    .update(updateData).eq('id',id);
   if(dbErr)throw dbErr;
+
   alert('Solution successfully uploaded અને doubt Solved થયો. ✅');
   await loadDoubts();
  }catch(e){
-  alert('Solution upload failed:\\n'+(e.message||e));
-  btn.disabled=false;btn.textContent='Upload Solution & Mark Solved';
+  alert('Solution save failed:\n'+(e.message||e));
+  if(btn){btn.disabled=false;btn.textContent='Upload Solution & Mark Solved';}
  }
 }
 function esc(v){return String(v).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'","&#039;")}
