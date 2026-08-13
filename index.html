@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GCI Mehsana | Student Portal</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  min-height:100vh;
+  font-family:Arial,sans-serif;
+  background:
+    radial-gradient(circle at 10% 20%,rgba(0,180,255,.10),transparent 35%),
+    radial-gradient(circle at 90% 80%,rgba(255,100,50,.08),transparent 35%),
+    #07090f;
+  color:#f1f5f9;
+  padding:28px 15px;
+}
+.container{max-width:850px;margin:auto}
+.header{
+  background:rgba(18,22,35,.88);
+  border:1px solid rgba(120,160,255,.18);
+  border-radius:20px;
+  padding:22px;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  margin-bottom:32px;
+}
+.logo{
+  width:90px;height:68px;border-radius:17px;
+  background:linear-gradient(135deg,#159fe8,#635bff,#ff761f);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:bold;font-size:17px;text-align:center;
+}
+.header h1{font-size:24px;margin-bottom:5px}
+.header p{color:#94a3b8}
+.badge{
+  display:inline-block;margin-top:9px;padding:6px 13px;
+  border-radius:20px;border:1px solid #22d3ee;
+  color:#22d3ee;font-size:12px;font-weight:bold;
+}
+.title{text-align:center;margin:38px 0 25px}
+.title h2{font-size:34px;margin-bottom:8px}
+.title p{color:#94a3b8}
+.card{
+  background:rgba(18,22,35,.88);
+  border:1px solid rgba(120,160,255,.18);
+  border-radius:20px;padding:24px;
+}
+.question{color:#22d3ee;font-size:18px;font-weight:bold;margin-bottom:18px}
+.option{
+  display:flex;align-items:center;gap:18px;
+  text-decoration:none;color:#f1f5f9;
+  background:#0d1220;border:1px solid #24314a;
+  border-radius:16px;padding:21px;margin-bottom:15px;
+  transition:.2s;
+}
+.option:hover{transform:translateY(-2px);border-color:#22d3ee;background:#111a2b}
+.icon{
+  width:55px;height:55px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:27px;background:linear-gradient(135deg,#159fe8,#635bff);
+  flex-shrink:0;
+}
+.name{font-size:19px;font-weight:bold;margin-bottom:5px}
+.desc{color:#94a3b8;font-size:14px;line-height:1.5}
+.footer{text-align:center;color:#64748b;font-size:13px;margin-top:28px}
+@media(max-width:600px){
+  body{padding:18px 12px}
+  .header{padding:18px}
+  .logo{width:75px;height:60px;font-size:14px}
+  .header h1{font-size:19px}
+  .title h2{font-size:28px}
+  .card{padding:18px}
+  .option{padding:17px}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="logo">GCI<br>Mehsana</div>
+    <div>
+      <h1>Gyanmanjari Career Institute</h1>
+      <p>GCI Mehsana</p>
+      <div class="badge">STUDENT PORTAL</div>
+    </div>
+  </div>
+
+  <div class="title">
+    <h2>Student Dashboard</h2>
+    <p>Select an option to continue</p>
+  </div>
+
+  <div class="card">
+    <div class="question">📚 તમે શું ખોલવા માંગો છો?</div>
+
+    <a class="option" href="./daily-report.html">
+      <div class="icon">📝</div>
+      <div>
+        <div class="name">Daily Work Report</div>
+        <div class="desc">તમારો Daily Study Work Report submit કરો.</div>
+      </div>
+    </a>
+
+    <a class="option" href="https://gci-doubt-section.vercel.app/">
+      <div class="icon">❓</div>
+      <div>
+        <div class="name">Doubt Section</div>
+        <div class="desc">Doubt photo મોકલો અને Teacher solution મેળવો.</div>
+      </div>
+    </a>
+  </div>
+
+  <div class="footer">
+    Gyanmanjari Career Institute · GCI Mehsana
+  </div>
+</div>
+</body>
+</html>
