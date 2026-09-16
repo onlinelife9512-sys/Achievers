@@ -2,121 +2,157 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#07090f">
+<meta name="description" content="Student Portal — Gyanmanjari Career Institute, GCI Mehsana. Daily Work Report and Doubt Section.">
 <title>GCI Mehsana | Student Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%236366f1'/%3E%3Ctext x='50' y='68' font-size='54' font-family='Arial' font-weight='bold' fill='white' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{
-  min-height:100vh;
-  font-family:Arial,sans-serif;
-  background:
-    radial-gradient(circle at 10% 20%,rgba(0,180,255,.10),transparent 35%),
-    radial-gradient(circle at 90% 80%,rgba(255,100,50,.08),transparent 35%),
-    #07090f;
-  color:#f1f5f9;
-  padding:28px 15px;
+:root{
+  --bg:#07090f;--card:rgba(18,22,35,.8);--tile:rgba(10,15,28,.85);
+  --border:rgba(120,160,255,.16);--border-strong:rgba(120,160,255,.32);
+  --text:#f1f5f9;--muted:#94a3b8;--dim:#64748b;--cyan:#22d3ee;
+  --font:'Inter',system-ui,-apple-system,sans-serif;
+  --display:'Outfit','Inter',system-ui,sans-serif;
+  --shadow:0 10px 34px rgba(0,0,0,.34);
+  --ease:cubic-bezier(.22,1,.36,1);
 }
-.container{max-width:850px;margin:auto}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font);background:var(--bg);color:var(--text);
+  min-height:100vh;line-height:1.55;-webkit-font-smoothing:antialiased;
+  padding:28px 15px calc(40px + env(safe-area-inset-bottom));
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;background:
+    radial-gradient(ellipse 60% 45% at 12% 5%,rgba(0,180,255,.12),transparent 55%),
+    radial-gradient(ellipse 55% 45% at 88% 85%,rgba(255,100,50,.09),transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 50%,rgba(139,92,246,.06),transparent 60%);
+}
+.container{max-width:760px;margin:auto}
+
 .header{
-  background:rgba(18,22,35,.88);
-  border:1px solid rgba(120,160,255,.18);
-  border-radius:20px;
-  padding:22px;
-  display:flex;
-  align-items:center;
-  gap:18px;
-  margin-bottom:32px;
+  background:linear-gradient(145deg,rgba(30,41,59,.9),rgba(15,23,42,.95));
+  border:1px solid rgba(99,102,241,.22);border-radius:20px;
+  padding:20px;display:flex;align-items:center;gap:16px;
+  box-shadow:var(--shadow);animation:riseIn .65s var(--ease) both;
 }
 .logo{
-  width:90px;height:68px;border-radius:17px;
-  background:linear-gradient(135deg,#159fe8,#635bff,#ff761f);
-  display:flex;align-items:center;justify-content:center;
-  font-weight:bold;font-size:17px;text-align:center;
+  width:80px;height:64px;flex-shrink:0;border-radius:16px;
+  background:linear-gradient(135deg,#159fe8,#635bff 50%,#ff761f);
+  display:grid;place-items:center;text-align:center;
+  font-family:var(--display);font-weight:700;font-size:14px;line-height:1.2;color:#fff;
+  box-shadow:0 6px 26px rgba(99,102,241,.35);
 }
-.header h1{font-size:24px;margin-bottom:5px}
-.header p{color:#94a3b8}
+.header h1{font-family:var(--display);font-size:clamp(18px,4.6vw,23px);font-weight:600;letter-spacing:.2px}
+.header p{color:var(--muted);font-size:13px;margin-top:2px}
 .badge{
-  display:inline-block;margin-top:9px;padding:6px 13px;
-  border-radius:20px;border:1px solid #22d3ee;
-  color:#22d3ee;font-size:12px;font-weight:bold;
+  display:inline-block;margin-top:8px;padding:4px 12px;border-radius:99px;
+  font-size:11px;font-weight:600;letter-spacing:.7px;color:var(--cyan);
+  background:linear-gradient(90deg,rgba(34,211,238,.12),rgba(99,102,241,.12));
+  border:1px solid rgba(34,211,238,.28);
 }
-.title{text-align:center;margin:38px 0 25px}
-.title h2{font-size:34px;margin-bottom:8px}
-.title p{color:#94a3b8}
+
+.title{text-align:center;margin:38px 0 26px;animation:riseIn .65s .1s var(--ease) both}
+.title h2{
+  font-family:var(--display);font-size:clamp(28px,7.5vw,36px);font-weight:700;letter-spacing:-.5px;line-height:1.2;
+  background:linear-gradient(90deg,#e0e7ff,#67e8f9 46%,#a5b4fc);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+}
+.title p{color:var(--muted);font-size:14px;margin-top:4px}
+
 .card{
-  background:rgba(18,22,35,.88);
-  border:1px solid rgba(120,160,255,.18);
-  border-radius:20px;padding:24px;
+  background:var(--card);border:1px solid var(--border);border-radius:20px;padding:22px;
+  backdrop-filter:blur(14px);box-shadow:var(--shadow);
+  animation:riseIn .65s .18s var(--ease) both;
 }
-.question{color:#22d3ee;font-size:18px;font-weight:bold;margin-bottom:18px}
+.question{
+  font-family:var(--display);color:var(--cyan);font-size:17px;font-weight:600;margin-bottom:16px;
+}
 .option{
-  display:flex;align-items:center;gap:18px;
-  text-decoration:none;color:#f1f5f9;
-  background:#0d1220;border:1px solid #24314a;
-  border-radius:16px;padding:21px;margin-bottom:15px;
-  transition:.2s;
+  display:flex;align-items:center;gap:16px;text-decoration:none;color:var(--text);
+  background:var(--tile);border:1px solid var(--border);border-radius:16px;
+  padding:18px;margin-bottom:13px;
+  transition:transform .22s var(--ease),border-color .22s,background .22s,box-shadow .22s;
 }
-.option:hover{transform:translateY(-2px);border-color:#22d3ee;background:#111a2b}
+.option:last-of-type{margin-bottom:0}
+.option:hover,.option:focus-visible{
+  transform:translateY(-3px);border-color:var(--border-strong);
+  background:rgba(17,26,43,.95);box-shadow:0 12px 30px rgba(0,0,0,.36);outline:none;
+}
+.option:focus-visible{border-color:var(--cyan)}
 .icon{
-  width:55px;height:55px;border-radius:14px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:27px;background:linear-gradient(135deg,#159fe8,#635bff);
-  flex-shrink:0;
+  width:54px;height:54px;flex-shrink:0;border-radius:15px;display:grid;place-items:center;font-size:25px;
 }
-.name{font-size:19px;font-weight:bold;margin-bottom:5px}
-.desc{color:#94a3b8;font-size:14px;line-height:1.5}
-.footer{text-align:center;color:#64748b;font-size:13px;margin-top:28px}
+.o1 .icon{background:linear-gradient(135deg,#6366f1,#8b5cf6);box-shadow:0 6px 20px rgba(99,102,241,.3)}
+.o2 .icon{background:linear-gradient(135deg,#0ea5e9,#22d3ee);box-shadow:0 6px 20px rgba(14,165,233,.3)}
+.opt-text{flex:1;min-width:0}
+.name{font-family:var(--display);font-size:17px;font-weight:600;margin-bottom:3px}
+.desc{color:var(--muted);font-size:13.5px;line-height:1.5}
+.arrow{color:var(--dim);font-size:19px;flex-shrink:0;transition:transform .22s var(--ease),color .22s}
+.option:hover .arrow{transform:translateX(4px);color:var(--cyan)}
+
+.footer{text-align:center;color:var(--dim);font-size:12.5px;margin-top:28px}
+
+@keyframes riseIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
 @media(max-width:600px){
-  body{padding:18px 12px}
-  .header{padding:18px}
-  .logo{width:75px;height:60px;font-size:14px}
-  .header h1{font-size:19px}
-  .title h2{font-size:28px}
+  body{padding:18px 12px 34px}
+  .header{flex-direction:column;text-align:center;padding:18px}
+  .logo{width:74px;height:60px}
   .card{padding:18px}
-  .option{padding:17px}
+  .option{padding:16px;gap:13px}
+  .icon{width:48px;height:48px;font-size:22px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
 </style>
 </head>
 <body>
 <div class="container">
 
-  <div class="header">
+  <header class="header">
     <div class="logo">GCI<br>Mehsana</div>
     <div>
       <h1>Gyanmanjari Career Institute</h1>
       <p>GCI Mehsana</p>
-      <div class="badge">STUDENT PORTAL</div>
+      <span class="badge">STUDENT PORTAL</span>
     </div>
-  </div>
+  </header>
 
   <div class="title">
     <h2>Student Dashboard</h2>
     <p>Select an option to continue</p>
   </div>
 
-  <div class="card">
+  <main class="card">
     <div class="question">📚 તમે શું ખોલવા માંગો છો?</div>
 
-    <a class="option" href="./daily-report.html">
+    <a class="option o1" href="./daily-report.html">
       <div class="icon">📝</div>
-      <div>
+      <div class="opt-text">
         <div class="name">Daily Work Report</div>
-        <div class="desc">તમારો Daily Study Work Report submit કરો.</div>
+        <div class="desc">તમારો Daily Study Work Report submit કરો. Progress bar સાથે.</div>
       </div>
+      <div class="arrow">›</div>
     </a>
 
-    <a class="option" href="https://gci-doubt-section.vercel.app/">
+    <a class="option o2" href="https://gci-doubt-section.vercel.app/">
       <div class="icon">❓</div>
-      <div>
+      <div class="opt-text">
         <div class="name">Doubt Section</div>
         <div class="desc">Doubt photo મોકલો અને Teacher solution મેળવો.</div>
       </div>
+      <div class="arrow">›</div>
     </a>
-  </div>
+  </main>
 
-  <div class="footer">
-    Gyanmanjari Career Institute · GCI Mehsana
-  </div>
+  <p class="footer">Gyanmanjari Career Institute · GCI Mehsana</p>
 </div>
 </body>
 </html>
