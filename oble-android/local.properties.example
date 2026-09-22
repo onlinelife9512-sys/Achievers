@@ -1,0 +1,7 @@
+# Copy to local.properties (git-ignored). Never commit real keys.
+sdk.dir=/path/to/Android/sdk
+
+# Optional: default Gemini key baked into YOUR personal debug build only.
+# Preferred: leave empty and paste the key in the app's Settings screen
+# (stored encrypted with the Android Keystore).
+GEMINI_API_KEY=

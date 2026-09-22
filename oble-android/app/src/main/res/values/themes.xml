@@ -1,0 +1,7 @@
+<resources>
+    <style name="Theme.Oble" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowBackground">@color/oble_black</item>
+        <item name="android:statusBarColor">@color/oble_black</item>
+        <item name="android:navigationBarColor">@color/oble_black</item>
+    </style>
+</resources>

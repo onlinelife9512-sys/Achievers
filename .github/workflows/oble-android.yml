@@ -1,0 +1,51 @@
+name: OBLE Android
+
+on:
+  push:
+    paths:
+      - "oble-android/**"
+      - ".github/workflows/oble-android.yml"
+  pull_request:
+    paths:
+      - "oble-android/**"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: oble-android
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: android-actions/setup-android@v3
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Unit tests (core logic)
+        run: ./gradlew --no-daemon :core:test
+
+      - name: Build debug APK
+        # GEMINI_API_KEY is intentionally NOT provided: the APK ships without keys.
+        run: ./gradlew --no-daemon :app:assembleDebug
+
+      - name: Upload debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: oble-debug-apk
+          path: oble-android/app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: oble-android/core/build/reports/tests/
+          if-no-files-found: ignore
